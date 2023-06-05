@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -6,9 +6,10 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit{
+export class AppComponent {
   title = 'ip-address-tracker';
   searchValue = "";
+  isError = false;
 
   data = {
     "ip address": '-- -- --',
@@ -17,17 +18,14 @@ export class AppComponent implements OnInit{
     "isp": "-- -- --"
   }
 
-  constructor(public http: HttpClient){
+  constructor(public http: HttpClient) {
     this.geoFindMe();
   }
-  ngOnInit(): void {
-    
-  }
-  
-  orderOriginal = (a: any, b:any): number => {
+
+  orderOriginal = (a: any, b: any): number => {
     return 0;
   }
-  
+
   findInitialIP(): void {
     console.log("findInitialIP");
 
@@ -36,29 +34,29 @@ export class AppComponent implements OnInit{
     })
   }
 
-  searchSubmit(value: {searchValue: ''}): void {
-    console.log("SUbmit", value);
+  searchSubmit(value: { searchValue: '' }): void {
     this.searchValue = value.searchValue;
   }
 
   getIPDetails(value: any): void {
-    console.log("ipdetails is getting called", value);
-    this.data = value;
+    if (value === "Invalid IP") {
+      this.isError = true;
+    } else {
+      this.data = value;
+    }
   }
 
-   geoFindMe(): void {
+  geoFindMe(): void {
     const success = async (position: { coords: { latitude: any; longitude: any; }; }) => {
       const latitude = position.coords.latitude;
       const longitude = position.coords.longitude;
-      console.log("latlong",latitude, longitude);
       await this.findInitialIP();
     }
-  
+
     function error() {
-      console.log("Unable to retrieve your location");
       alert("Unable to retrieve your location.Please enable location access");
     }
-  
+
     if (!navigator.geolocation) {
       console.log("Geolocation is not supported by your browser");
     } else {

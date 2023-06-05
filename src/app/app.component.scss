@@ -27,27 +27,29 @@ form div {
 }
 
 .tracker-container span div:nth-child(1) {
-    font-size:10px;
+    font-size: 10px;
     color: gray;
     font-weight: bold;
 }
 
 .tracker-container span div:nth-child(2) {
-    font-size:16px;
+    font-size: 16px;
     font-weight: bold;
     padding-top: 5px;
 }
 
-.tracker-container p:last-child {
+.tracker-container .border-start:last-child {
     display: none !important;
 }
 
 .dialog-start {
     padding: 30px;
     max-width: 200px;
-    :last-child {
-        // display: none;
-    }
+}
+
+form p {
+    color: red;
+    font-size: 16px;
 }
 
 .dialog-container {

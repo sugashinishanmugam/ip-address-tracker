@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "leaflet"
+            ],
             "outputPath": "dist/ip-address-tracker",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -43,10 +46,18 @@
           },
           "configurations": {
             "production": {
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                    "minify": true,
+                    "inlineCritical": false
+                },
+                "fonts": true
+            },
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
+                  "maximumWarning": "800kb",
                   "maximumError": "1mb"
                 },
                 {

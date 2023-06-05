@@ -28,7 +28,7 @@ export class MapComponent implements AfterViewInit {
     this.removeMarker(this.map);
   }
 
-  get ipaddressvalue(): any { 
+  get ipaddressvalue(): any {
     return this.ipaddress;
   }
 
@@ -67,6 +67,9 @@ export class MapComponent implements AfterViewInit {
           "isp": res.isp
         }
         this.passIPAddressDetails(this.ipDetails);
+      }, (error: any) => {
+        console.error("error", error);
+        this.passIPAddressDetails("Invalid IP");
       });
     }
   }
