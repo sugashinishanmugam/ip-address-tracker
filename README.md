@@ -1,5 +1,7 @@
 # IpAddressTracker
 
+Application is hosted in https://ip-address-tracker-omega-nine.vercel.app/
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.0.
 
 ## Development server
